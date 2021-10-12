@@ -256,7 +256,7 @@ knitr::include_graphics("even-more-delphi.png")
 
 * Creating Ensemble forecasts.
 
-* Work on many traditional stats research topics. (causal inference, nowcasting, CFR estimation, deconvolution, ...)
+* Work on many traditional stats research topics. (causal inference, nowcasting, CFR estimation, deconvolution, recalibration, backfill corrections, ...)
 
 * Software development.
 

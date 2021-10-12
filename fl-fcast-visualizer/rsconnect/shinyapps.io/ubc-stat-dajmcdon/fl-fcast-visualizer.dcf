@@ -1,0 +1,13 @@
+name: fl-fcast-visualizer
+title: fl-fcast-visualizer
+username:
+account: ubc-stat-dajmcdon
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4847997
+bundleId: 5128492
+url: https://ubc-stat-dajmcdon.shinyapps.io/fl-fcast-visualizer/
+when: 1633989404.61662
+lastSyncTime: 1633989404.61663
+asMultiple: FALSE
+asStatic: FALSE

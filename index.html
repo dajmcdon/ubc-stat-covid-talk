@@ -7,14 +7,8 @@
     <meta name="date" content="2021-10-12" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
-    <link href="index_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="index_files/datatables-binding/datatables.js"></script>
-    <script src="index_files/jquery/jquery-3.6.0.min.js"></script>
-    <link href="index_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="index_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="index_files/dt-core/js/jquery.dataTables.min.js"></script>
-    <link href="index_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
-    <script src="index_files/crosstalk/js/crosstalk.min.js"></script>
+    <script src="index_files/pymjs/pym.v1.js"></script>
+    <script src="index_files/widgetframe-binding/widgetframe.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="slides-style.css" type="text/css" />
   </head>
@@ -146,6 +140,8 @@ CMU MLD + Stat
 
 ## To understand COVID-19, we need data
 
+
+
 .pull-left[
 ### Canada
 
@@ -153,389 +149,501 @@ CMU MLD + Stat
 
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"/></svg> Regularized reporting
 
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:red;overflow:visible;position:relative;"><path d="M440.5 88.5l-52 52L415 167c9.4 9.4 9.4 24.6 0 33.9l-17.4 17.4c11.8 26.1 18.4 55.1 18.4 85.6 0 114.9-93.1 208-208 208S0 418.9 0 304 93.1 96 208 96c30.5 0 59.5 6.6 85.6 18.4L311 97c9.4-9.4 24.6-9.4 33.9 0l26.5 26.5 52-52 17.1 17zM500 60h-24c-6.6 0-12 5.4-12 12s5.4 12 12 12h24c6.6 0 12-5.4 12-12s-5.4-12-12-12zM440 0c-6.6 0-12 5.4-12 12v24c0 6.6 5.4 12 12 12s12-5.4 12-12V12c0-6.6-5.4-12-12-12zm33.9 55l17-17c4.7-4.7 4.7-12.3 0-17-4.7-4.7-12.3-4.7-17 0l-17 17c-4.7 4.7-4.7 12.3 0 17 4.8 4.7 12.4 4.7 17 0zm-67.8 0c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17zm67.8 34c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17zM112 272c0-35.3 28.7-64 64-64 8.8 0 16-7.2 16-16s-7.2-16-16-16c-52.9 0-96 43.1-96 96 0 8.8 7.2 16 16 16s16-7.2 16-16z"/></svg> Huge emphasis on privacy
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M440.5 88.5l-52 52L415 167c9.4 9.4 9.4 24.6 0 33.9l-17.4 17.4c11.8 26.1 18.4 55.1 18.4 85.6 0 114.9-93.1 208-208 208S0 418.9 0 304 93.1 96 208 96c30.5 0 59.5 6.6 85.6 18.4L311 97c9.4-9.4 24.6-9.4 33.9 0l26.5 26.5 52-52 17.1 17zM500 60h-24c-6.6 0-12 5.4-12 12s5.4 12 12 12h24c6.6 0 12-5.4 12-12s-5.4-12-12-12zM440 0c-6.6 0-12 5.4-12 12v24c0 6.6 5.4 12 12 12s12-5.4 12-12V12c0-6.6-5.4-12-12-12zm33.9 55l17-17c4.7-4.7 4.7-12.3 0-17-4.7-4.7-12.3-4.7-17 0l-17 17c-4.7 4.7-4.7 12.3 0 17 4.8 4.7 12.4 4.7 17 0zm-67.8 0c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17zm67.8 34c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17zM112 272c0-35.3 28.7-64 64-64 8.8 0 16-7.2 16-16s-7.2-16-16-16c-52.9 0-96 43.1-96 96 0 8.8 7.2 16 16 16s16-7.2 16-16z"/></svg> Huge emphasis on privacy
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M440.5 88.5l-52 52L415 167c9.4 9.4 9.4 24.6 0 33.9l-17.4 17.4c11.8 26.1 18.4 55.1 18.4 85.6 0 114.9-93.1 208-208 208S0 418.9 0 304 93.1 96 208 96c30.5 0 59.5 6.6 85.6 18.4L311 97c9.4-9.4 24.6-9.4 33.9 0l26.5 26.5 52-52 17.1 17zM500 60h-24c-6.6 0-12 5.4-12 12s5.4 12 12 12h24c6.6 0 12-5.4 12-12s-5.4-12-12-12zM440 0c-6.6 0-12 5.4-12 12v24c0 6.6 5.4 12 12 12s12-5.4 12-12V12c0-6.6-5.4-12-12-12zm33.9 55l17-17c4.7-4.7 4.7-12.3 0-17-4.7-4.7-12.3-4.7-17 0l-17 17c-4.7 4.7-4.7 12.3 0 17 4.8 4.7 12.4 4.7 17 0zm-67.8 0c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17zm67.8 34c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17zM112 272c0-35.3 28.7-64 64-64 8.8 0 16-7.2 16-16s-7.2-16-16-16c-52.9 0-96 43.1-96 96 0 8.8 7.2 16 16 16s16-7.2 16-16z"/></svg> Relatively underfunded.
+
+<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:2em;width:2.5em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M621.16 54.46C582.37 38.19 543.55 32 504.75 32c-123.17-.01-246.33 62.34-369.5 62.34-30.89 0-61.76-3.92-92.65-13.72-3.47-1.1-6.95-1.62-10.35-1.62C15.04 79 0 92.32 0 110.81v317.26c0 12.63 7.23 24.6 18.84 29.46C57.63 473.81 96.45 480 135.25 480c123.17 0 246.34-62.35 369.51-62.35 30.89 0 61.76 3.92 92.65 13.72 3.47 1.1 6.95 1.62 10.35 1.62 17.21 0 32.25-13.32 32.25-31.81V83.93c-.01-12.64-7.24-24.6-18.85-29.47zM48 132.22c20.12 5.04 41.12 7.57 62.72 8.93C104.84 170.54 79 192.69 48 192.69v-60.47zm0 285v-47.78c34.37 0 62.18 27.27 63.71 61.4-22.53-1.81-43.59-6.31-63.71-13.62zM320 352c-44.19 0-80-42.99-80-96 0-53.02 35.82-96 80-96s80 42.98 80 96c0 53.03-35.83 96-80 96zm272 27.78c-17.52-4.39-35.71-6.85-54.32-8.44 5.87-26.08 27.5-45.88 54.32-49.28v57.72zm0-236.11c-30.89-3.91-54.86-29.7-55.81-61.55 19.54 2.17 38.09 6.23 55.81 12.66v48.89z"/></svg> goes to the "right places"
 
 ]
+
+.pull-right[
+### USA
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M440.5 88.5l-52 52L415 167c9.4 9.4 9.4 24.6 0 33.9l-17.4 17.4c11.8 26.1 18.4 55.1 18.4 85.6 0 114.9-93.1 208-208 208S0 418.9 0 304 93.1 96 208 96c30.5 0 59.5 6.6 85.6 18.4L311 97c9.4-9.4 24.6-9.4 33.9 0l26.5 26.5 52-52 17.1 17zM500 60h-24c-6.6 0-12 5.4-12 12s5.4 12 12 12h24c6.6 0 12-5.4 12-12s-5.4-12-12-12zM440 0c-6.6 0-12 5.4-12 12v24c0 6.6 5.4 12 12 12s12-5.4 12-12V12c0-6.6-5.4-12-12-12zm33.9 55l17-17c4.7-4.7 4.7-12.3 0-17-4.7-4.7-12.3-4.7-17 0l-17 17c-4.7 4.7-4.7 12.3 0 17 4.8 4.7 12.4 4.7 17 0zm-67.8 0c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17zm67.8 34c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17zM112 272c0-35.3 28.7-64 64-64 8.8 0 16-7.2 16-16s-7.2-16-16-16c-52.9 0-96 43.1-96 96 0 8.8 7.2 16 16 16s16-7.2 16-16z"/></svg> Decentralized Health Care
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M440.5 88.5l-52 52L415 167c9.4 9.4 9.4 24.6 0 33.9l-17.4 17.4c11.8 26.1 18.4 55.1 18.4 85.6 0 114.9-93.1 208-208 208S0 418.9 0 304 93.1 96 208 96c30.5 0 59.5 6.6 85.6 18.4L311 97c9.4-9.4 24.6-9.4 33.9 0l26.5 26.5 52-52 17.1 17zM500 60h-24c-6.6 0-12 5.4-12 12s5.4 12 12 12h24c6.6 0 12-5.4 12-12s-5.4-12-12-12zM440 0c-6.6 0-12 5.4-12 12v24c0 6.6 5.4 12 12 12s12-5.4 12-12V12c0-6.6-5.4-12-12-12zm33.9 55l17-17c4.7-4.7 4.7-12.3 0-17-4.7-4.7-12.3-4.7-17 0l-17 17c-4.7 4.7-4.7 12.3 0 17 4.8 4.7 12.4 4.7 17 0zm-67.8 0c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17zm67.8 34c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17zM112 272c0-35.3 28.7-64 64-64 8.8 0 16-7.2 16-16s-7.2-16-16-16c-52.9 0-96 43.1-96 96 0 8.8 7.2 16 16 16s16-7.2 16-16z"/></svg> Massively irregular reporting
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M440.5 88.5l-52 52L415 167c9.4 9.4 9.4 24.6 0 33.9l-17.4 17.4c11.8 26.1 18.4 55.1 18.4 85.6 0 114.9-93.1 208-208 208S0 418.9 0 304 93.1 96 208 96c30.5 0 59.5 6.6 85.6 18.4L311 97c9.4-9.4 24.6-9.4 33.9 0l26.5 26.5 52-52 17.1 17zM500 60h-24c-6.6 0-12 5.4-12 12s5.4 12 12 12h24c6.6 0 12-5.4 12-12s-5.4-12-12-12zM440 0c-6.6 0-12 5.4-12 12v24c0 6.6 5.4 12 12 12s12-5.4 12-12V12c0-6.6-5.4-12-12-12zm33.9 55l17-17c4.7-4.7 4.7-12.3 0-17-4.7-4.7-12.3-4.7-17 0l-17 17c-4.7 4.7-4.7 12.3 0 17 4.8 4.7 12.4 4.7 17 0zm-67.8 0c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17zm67.8 34c-4.7-4.7-12.3-4.7-17 0-4.7 4.7-4.7 12.3 0 17l17 17c4.7 4.7 12.3 4.7 17 0 4.7-4.7 4.7-12.3 0-17l-17-17zM112 272c0-35.3 28.7-64 64-64 8.8 0 16-7.2 16-16s-7.2-16-16-16c-52.9 0-96 43.1-96 96 0 8.8 7.2 16 16 16s16-7.2 16-16z"/></svg> Occasional emphasis on "privacy"
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"/></svg> Massively overfunded.
+
+<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:2em;width:2.5em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M621.16 54.46C582.37 38.19 543.55 32 504.75 32c-123.17-.01-246.33 62.34-369.5 62.34-30.89 0-61.76-3.92-92.65-13.72-3.47-1.1-6.95-1.62-10.35-1.62C15.04 79 0 92.32 0 110.81v317.26c0 12.63 7.23 24.6 18.84 29.46C57.63 473.81 96.45 480 135.25 480c123.17 0 246.34-62.35 369.51-62.35 30.89 0 61.76 3.92 92.65 13.72 3.47 1.1 6.95 1.62 10.35 1.62 17.21 0 32.25-13.32 32.25-31.81V83.93c-.01-12.64-7.24-24.6-18.85-29.47zM48 132.22c20.12 5.04 41.12 7.57 62.72 8.93C104.84 170.54 79 192.69 48 192.69v-60.47zm0 285v-47.78c34.37 0 62.18 27.27 63.71 61.4-22.53-1.81-43.59-6.31-63.71-13.62zM320 352c-44.19 0-80-42.99-80-96 0-53.02 35.82-96 80-96s80 42.98 80 96c0 53.03-35.83 96-80 96zm272 27.78c-17.52-4.39-35.71-6.85-54.32-8.44 5.87-26.08 27.5-45.88 54.32-49.28v57.72zm0-236.11c-30.89-3.91-54.86-29.7-55.81-61.55 19.54 2.17 38.09 6.23 55.81 12.66v48.89z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:2em;width:2.5em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M621.16 54.46C582.37 38.19 543.55 32 504.75 32c-123.17-.01-246.33 62.34-369.5 62.34-30.89 0-61.76-3.92-92.65-13.72-3.47-1.1-6.95-1.62-10.35-1.62C15.04 79 0 92.32 0 110.81v317.26c0 12.63 7.23 24.6 18.84 29.46C57.63 473.81 96.45 480 135.25 480c123.17 0 246.34-62.35 369.51-62.35 30.89 0 61.76 3.92 92.65 13.72 3.47 1.1 6.95 1.62 10.35 1.62 17.21 0 32.25-13.32 32.25-31.81V83.93c-.01-12.64-7.24-24.6-18.85-29.47zM48 132.22c20.12 5.04 41.12 7.57 62.72 8.93C104.84 170.54 79 192.69 48 192.69v-60.47zm0 285v-47.78c34.37 0 62.18 27.27 63.71 61.4-22.53-1.81-43.59-6.31-63.71-13.62zM320 352c-44.19 0-80-42.99-80-96 0-53.02 35.82-96 80-96s80 42.98 80 96c0 53.03-35.83 96-80 96zm272 27.78c-17.52-4.39-35.71-6.85-54.32-8.44 5.87-26.08 27.5-45.88 54.32-49.28v57.72zm0-236.11c-30.89-3.91-54.86-29.7-55.81-61.55 19.54 2.17 38.09 6.23 55.81 12.66v48.89z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:2em;width:2.5em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M621.16 54.46C582.37 38.19 543.55 32 504.75 32c-123.17-.01-246.33 62.34-369.5 62.34-30.89 0-61.76-3.92-92.65-13.72-3.47-1.1-6.95-1.62-10.35-1.62C15.04 79 0 92.32 0 110.81v317.26c0 12.63 7.23 24.6 18.84 29.46C57.63 473.81 96.45 480 135.25 480c123.17 0 246.34-62.35 369.51-62.35 30.89 0 61.76 3.92 92.65 13.72 3.47 1.1 6.95 1.62 10.35 1.62 17.21 0 32.25-13.32 32.25-31.81V83.93c-.01-12.64-7.24-24.6-18.85-29.47zM48 132.22c20.12 5.04 41.12 7.57 62.72 8.93C104.84 170.54 79 192.69 48 192.69v-60.47zm0 285v-47.78c34.37 0 62.18 27.27 63.71 61.4-22.53-1.81-43.59-6.31-63.71-13.62zM320 352c-44.19 0-80-42.99-80-96 0-53.02 35.82-96 80-96s80 42.98 80 96c0 53.03-35.83 96-80 96zm272 27.78c-17.52-4.39-35.71-6.85-54.32-8.44 5.87-26.08 27.5-45.88 54.32-49.28v57.72zm0-236.11c-30.89-3.91-54.86-29.7-55.81-61.55 19.54 2.17 38.09 6.23 55.81 12.66v48.89z"/></svg> goes to the all the wrong places
+
+]
+
+&lt;hr&gt;
+
+--
+
+
+&lt;br/&gt;
+
+
+.center[.large[**Data Collection and Quality Is A Major Issue**]]
+
+--
+
+.center[.large[**The Necessary Data Depends on your Goals**]]
+
+---
+class: inverse, middle, center
+
+# Standard epidemic models
+
+
+
+---
+layout: true
+
+## SIR-type (compartmental) models - Stochastic Version
+
+---
+
+(Borrowed heavily from [Cosma Shalizi](http://www.stat.cmu.edu/~cshalizi/dst/20/lectures/20/lecture-20.html), Ryan Tibshirani, [Dean Karlen](https://pypm.github.io/home/docs/studies/reports/Characterizing_spread.pdf))
+
+Population of size N
+
+.pull-left[
+Suppose every member in a bucket at time t:
+
+1. .primary[Susceptible] `\(S(t)\)` : not sick, but could get sick
+1. .secondary[Infected] `\(I(t)\)` : sick, can make others sick
+1. .tertiary[Removed] `\(R(t)\)` : either recovered or dead; not sick, can't get sick, can't make anyone sick
+
+
+Bucket Jumping (small increment h):
+
+1. During h, each .primary[s] meets kh people.
+1. Prob( .primary[s] meets .secondary[i] and becomes .secondary[i] ) = c.
+1. So Prob( .primary[s] becomes .secondary[i] ) = `\(1 - (1 - c I(t)  / N )^{hk} \approx kchI(t) / N\)`
+1. New .secondary[i] in time h `\(\sim Binom(S(t),\ kchI(t) / N)\)`
+1. Prob( .secondary[i] becomes .tertiary[r]) = `\(\gamma h\)`, so new removals in time h `\(\sim Binom(I(t),\ \gamma h)\)`
+
+
+]
+
+.pull-right[
+<div id="htmlwidget-d1400771c8f9959de585" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d1400771c8f9959de585">{"x":{"url":"index_files/figure-html//widgets/widget_sir-dag.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+
+---
+
+.pull-left-wide[
+
+### Over-all equations:
+
+`\begin{aligned}
+C(t+h) &amp; =  \mathrm{Binom}\left(S(t),\ \frac{\beta}{N} h I(t)\right)\\
+D(t+h) &amp; =  \mathrm{Binom}\left(I(t),\ \gamma h\right)\\
+S(t+h) &amp; =  S(t) - C(t+h)\\
+I(t+h) &amp; =  I(t) + C(t+h) - D(t+h)\\
+R(t+h) &amp; =  R(t) + D(t+h)
+\end{aligned}`
+
+### In the deterministic limit, `\(N\rightarrow\infty,\ h\rightarrow 0\)`
+
+`\begin{aligned}
+N &amp;= S(0) + I(0) + R(0)\\
+\frac{dS}{dt} &amp; =  -\frac{\beta}{N} S(t)I(t)\\
+\frac{dI}{dt} &amp; =  \frac{\beta}{N} I(t)S(t) - \gamma I(t)\\
+\frac{dR}{dt} &amp; =  \gamma I(t)
+\end{aligned}`
+
+**"_the_ SIR model"** often ambiguous between the stochastic model and these ODEs
+
+]
+
+.pull-right-narrow[
+<div id="htmlwidget-d388c6527ad2212105bf" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d388c6527ad2212105bf">{"x":{"url":"index_files/figure-html//widgets/widget_sir-dag-again.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+]
+
+---
+layout: false
+
+## Data issues 
+
+- **Ideally** we'd see `\(S(t), I(t), R(t)\)` (or any 2) at all times
+
+- Easier to observe new infections, `\(I(t+h) - I(t)\)`, than current total infections, `\(I(t)\)`
+
+- Removals by death are easier to observe than removals by recovery, so we mostly see `\((R(t+h)-R(t))\times (\mathrm{death\ rate})\)`
+
+- The interval between measurements, say `\(\Delta\)`, is often `\(\gg h\)`
+
+- Measuring `\(I(t)\)` and `\(R(t)\)` (or their rates of change) is hard since testing/reporting is sporadic and error prone
+    + Need to model test error (false positives, false negatives) _and_ who gets tested
+    + Need to model lag between testing and reporting
+    
+- Parameters (especially, but not just `\(\beta\)`) change during the epidemic
+    + Changing behavior, changing policy, environmental factors, vaccines, variants, ...
+
+---
+layout: true
+
+## Connecting to Data
+
+---
+
+- Likelihood calculations are straightforward if we can measure `\(I(t), R(t)\)` at all times `\(0, h, 2h \ldots T\)`
+    + Or `\(I(0), R(0)\)` and all the increments `\(I(t+h)-I(t), R(t+h) - R(t)\)`
+	+ Still have to optimize numerically
+
+- Likelihood calculations already become difficult if the time between observations `\(\Delta \gg h\)`
+    + Generally, `\(\Delta \approx\)` 1 day
+    + In principle, this just defines another Markov process, with a longer interval `\(\Delta\)` between steps, but to get the likelihood of a `\(\Delta\)` step we have to sum over all possible paths of `\(h\)` steps adding up to it
+
+- Other complications if we don't observe all the compartments, and/or have a lot of noise in our observations
+    + We don't and we do.
+
+---
+
+.pull-left[
+
+- Often more tractable to avoid likelihood  (Conditional least squares, simulation-based inference)
+
+- Intrinsic issue: Initially, everything just looks exponential
+    + So it's hard to discriminate between distinct models
+    + So even assuming an SIR model, it's easier to estimate `\(\beta - \gamma\)` than `\((\beta, \gamma)\)` or `\(\beta/\gamma\)`
+
+- Can sometimes **calibrate** or fix the parameters based on other sources
+    + E.g., `\(1/\gamma =\)` average time someone is infectious, which could be determined from clinical studies / observations
+]
+
+.pull-right[
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;I have been thinking about how different people interpret data differently. And made this xkcd style graphic to illustrate this. &lt;a href="https://t.co/a8LvlmZxT7"&gt;pic.twitter.com/a8LvlmZxT7&lt;/a&gt;&lt;/p&gt;&amp;mdash; Jens von Bergmann (@vb_jens) &lt;a href="https://twitter.com/vb_jens/status/1372251931444350976?ref_src=twsrc%5Etfw"&gt;March 17, 2021&lt;/a&gt;&lt;/blockquote&gt;
+]
+
+
+---
+layout: false
+
+## BC COVID Compartmental Models
+
+.pull-left[.midi[
+
+Two main models
+
+- Caroline Colijn (and team) [COVIDSEIR](https://seananderson.github.io/covidseir/index.html)
+    * Uses the ODE version
+    * Extra compartments for social distancing, others
+    * Severity "ramp" on `\(\beta\)`
+    * Likehood evaluation using R / Stan
+    * Versions for age, a number of other things
+    
+- Dean Karlen [pyPM](https://pypm.github.io/home/)
+    * Discrete difference version
+    * Extra compartments for VOCs, Hospitalizations, deaths, ICU, others
+    * Estimated with Conditional Least Squares
+    * Includes "Case Injections", estimated and forced changes in `\(\beta\)`
+    * (Really a whole `python` package for creating compartmental models)
+    
+- Both model reporting delays, seasonality
+- Other Bells and Whistles I'm not doing justice
+]]
+
+.pull-right[
+
+![](bc_2_9_0928.jpg)
+
+.small[.center[Source: [Dean Karlen](https://github.com/pypm/home/blob/master/docs/studies/bc20210928/img/bc_2_9_0928.pdf) September 28 model fit to all BC]]
+]
+
+---
+
+## These models fit well "in sample"
+
+.pull-left[
+* Track observed cases closely (they should)
+
+* Can provide nuanced policy advice on some topics
+
+* Many questions depend on modulating `\(\beta\)`
+    1. What happens if we lock down?
+    2. What happens if we mask?
+    3. What happens if we have school online?
+    4. Vaccine passport?
+    
+* Vaccination modeling is easier, directly removes susceptibles
+
+* What about out-of-sample?
+]
+
+--
+
+.pull-right[.center[
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:20em;width:20em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+]]
+
+---
+background-image: url("covidseir-fcast.pdf")
+background-position: center
+background-size: contain
+
+---
+background-image: url("pypm-fcast.pdf")
+background-position: center
+background-size: contain
 
 
 ---
 class: inverse, middle, center
 
-# Usage examples
+# Out-of-sample COVID Forecasting
 
 ---
-## Typography
+## The task
 
-Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`.
+* Every week, submit forecasts to [COVID-19 **Forecast**Hub](https://covid19forecasthub.org)
 
-[Link to another slide](#colors).
+* We have now submitted 52 such forecasts (first on July 20, 2020)!
 
-### Lorem Ipsum
+* Originally "State Deaths", added "County Cases" a bit later, and eventually "Hospitalizations"
 
-Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor. 
-Lacinia neque mollis nascetur neque urna velit bibendum. 
-Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec.
+* Hub also collects (now) a few other targets
 
-- Dolor cubilia nostra nunc sodales
+--
 
-- Consectetur .secondary[aliquet] mauris blandit
+### The goal
 
-- Ipsum .primary[dis] .secondary[nec] .tertiary[porttitor] .fourth_color[urna sed]
+* Forecasts from many teams are combined into an "ensemble"
 
----
-name: colors
-
-## Colors
-
-.left-column[
-Text color
-
-[Link Color](#3)
-
-**Bold Color**
-
-_Italic Color_
-
-`Inline Code`
-]
-
-.right-column[
-Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3), 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Erat nam at lectus urna.
-Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat. 
-_Eros donec ac odio tempor_ orci dapibus ultrices. 
-Id porta nibh venenatis cras sed felis eget velit aliquet.
-Aliquam id diam maecenas ultricies mi.
-Enim sit amet 
-`code_color("inline")`
-venenatis urna cursus eget nunc scelerisque viverra.
-]
+* The ensemble generally has the best performance, and is the official CDC Forecast
 
 ---
 
-# Big Topic or Inverse Slides `#`
-
-## Slide Headings `##`
-
-### Sub-slide Headings `###`
-
-#### Bold Call-Out `####`
-
-This is a normal paragraph text. Only use header levels 1-4.
-
-
----
-
-# Left-Column Headings
-
-.left-column[
-## First
-
-## Second
-
-## Third
-]
-
-.right-column[
-Dolor quis aptent mus a dictum ultricies egestas.
-
-Amet egestas neque tempor fermentum proin massa!
-
-Dolor elementum fermentum pharetra lectus arcu pulvinar.
-]
-
-
----
-layout: true
-
-## Blocks
-
----
-
-### Blockquote
-
-&gt; This is a blockquote following a header.
-&gt;
-&gt; When something is important enough, you do it even if the odds are not in your favor.
-
----
-layout: true
-
-## Tables
-
----
-
-
-```r
-knitr::kable(head(mtcars), format = 'html')
-```
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mpg &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; cyl &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; disp &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; hp &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; drat &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; wt &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; qsec &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; vs &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; am &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; gear &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; carb &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Mazda RX4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 21.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.90 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.620 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.46 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Mazda RX4 Wag &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 21.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.90 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.875 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.02 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Datsun 710 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 22.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.85 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.320 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18.61 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Hornet 4 Drive &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 21.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 258 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.08 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.215 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 19.44 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Hornet Sportabout &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 360 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 175 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.15 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.440 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.02 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Valiant &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 225 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.76 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.460 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20.22 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
----
-exclude: false
-
-
-```r
-DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4))
-```
-
-<div id="htmlwidget-acd1baa565c4751ed9be" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-acd1baa565c4751ed9be">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant"],[21,21,22.8,21.4,18.7,18.1],[6,6,4,6,8,6],[160,160,108,258,360,225],[110,110,93,110,175,105],[3.9,3.9,3.85,3.08,3.15,2.76],[2.62,2.875,2.32,3.215,3.44,3.46],[16.46,17.02,18.61,19.44,17.02,20.22],[0,0,1,1,0,1],[1,1,1,0,0,0],[4,4,4,3,3,3],[4,4,1,1,2,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
-
----
-layout: true
-
-## Lists
-
----
+## The forecasters
 
 .pull-left[
-#### Here is an unordered list:
+* SIR, Agent-based models, ML models
 
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
+* Ours are (simple) ML
+
+* Some do pretty well, but many are ...
 ]
 
 .pull-right[
 
-#### And an ordered list:
+* "point" forecasts and "quantiles"
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
+* Predict 1-4 epiweeks ahead
+
+* Some teams produce longer-term forecasts ...
+]
+
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.svg" width="100%" /&gt;
+
+---
+
+## Forecast evaluation
+
+[Weighted Interval Score (Bracher et al., 2000)](https://arxiv.org/abs/2005.12881)
+
+.pull-left[
+* Calculated for each target   
+(forecast date, location, horizon)
+
+* For each Interval:
+    1. Width of interval.
+    1. Under prediction (AE to the top)
+    1. Over prediction (AE to the bottom)
+
+* Weighted average using probability content
+
+* Mathematically equivalent to an average of quantile losses
+
+* Discrete approximation of CRPS
+]
+
+.pull-right[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" width="100%" /&gt;
+
 ]
 
 ---
 
-### And a nested list:
+## Comparing across space and time
 
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
+
+
+
+.pull-left[
+
+* Error proportional to cases
+
+* Large right skew
+
+* "Adjust" by scaling to a Baseline
+
+* Baseline is flat line + residual quantiles
+
+&lt;img src="index_files/figure-html/wis-map-1.svg" width="100%" /&gt;
+
+]
+
+.pull-right[
+
+
+&lt;img src="index_files/figure-html/wis-densities-1.svg" width="100%" /&gt;
+
+
+]
 
 ---
 
-### Nesting an ol in ul in an ol
+## Performance over time (Incident Deaths)
 
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-  1. level 4 item (ol)
-  1. level 4 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
+&lt;img src="index_files/figure-html/death-scores-all-1.svg" width="100%" /&gt;
+
+---
+
+## Overall performance (Incident Deaths)
+#### All forecasters with at least 4 months of submissions
+
+&lt;img src="index_files/figure-html/overall-death-1.svg" width="100%" /&gt;
+
+---
+
+## What about Incident Cases?
+
+
+
+&lt;img src="index_files/figure-html/overall-cases-1.svg" width="100%" /&gt;
+
+---
+
+## Predicting surges in Florida
+
+&lt;iframe src="https://ubc-stat-dajmcdon.shinyapps.io/fl-fcast-visualizer/" width="100%" height="700px" style="border:none"&gt;&lt;/iframe&gt;
+
+---
+
+## PI Coverage
+
+&lt;img src="index_files/figure-html/coverage-plot-1.svg" width="100%" /&gt;
 
 ---
 layout: true
 
-## Plots
+## The terrible case of Ohio
+
+
 
 ---
 
-
-```r
-library(ggplot2)
-(g &lt;- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point())
-```
-
-&lt;img src="index_files/figure-html/plot-example-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/plot-oh-1.svg" width="100%" /&gt;
 
 ---
 
-
-```r
-g + 
-  xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) +
-  ggtitle("A Plot About Cars")
-```
-
-&lt;img src="index_files/figure-html/plot-example-themed-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/bad-forecast-1.svg" width="100%" /&gt;
 
 ---
 layout: false
+class: inverse, middle, center
 
-## Square image
+# Forecasting lessons
 
-&lt;center&gt;&lt;img src="https://octodex.github.com/images/labtocat.png" height="400px" /&gt;&lt;/center&gt;
+---
+layout: true
 
-.footnote[GitHub Octocat]
+## Forecasting lessons
 
 ---
 
-### Wide image
+Simple models [M,Bien,Green,Hu,...Tibs](http://medrxiv.org/content/10.1101/2021.06.22.21259346v1)
 
-![](https://guides.github.com/activities/hello-world/branching.png)
 
-.footnote[Wide images scale to 100% slide width]
+
+&lt;img src="index_files/figure-html/add-hrr-1.svg" width="100%" /&gt;
 
 ---
 
-## Two images
+Human in the loop
+
+&lt;img src="manual-corrections.png" width="100%" height="90%" /&gt;
+
+---
+
+Human in the loop
+
+&lt;img src="quality-control.png" width="90%" /&gt;
+
+---
+layout:false
+class: middle, inverse, center
+
+# Thoughts and thanks
+
+---
+
+## Thoughts without pictures
 
 .pull-left[
-![](https://octodex.github.com/images/motherhubbertocat.png)
+
+* Data is trouble
+    1. Both groups spend lots of time dealing with this
+    2. Nowcasting
+    3. Low SNR
+    4. Very nonstationary
+    
+* Forecast evaluation is not settled
+    1. WIS is equivalent to quantile loss, should use that.
+    2. Not optimized to predict turning points. 
+    3. How do we create ensembles?
+
 ]
 
 .pull-right[
-![](https://octodex.github.com/images/dinotocat.png)
+
+* Hugely important to backtest properly
+    1. Data is constantly revised
+    2. We see up to 10% "improvement" if we use finalized data
+    3. Bigger deal in the US
+
+* Understanding the spatio-temporal dynamics is open
+    1. How do "waves" propagate?
+    2. How important is mixing?
+    3. Effects of schooling?
+    4. Seasonality?
+    
+* True Counterfactual causal inference is open
+
+* Massive survey dataset
+
 ]
 
 ---
 
-### Definition lists can be used with HTML syntax.
+## Delphi data
 
-&lt;dl&gt;
-&lt;dt&gt;Name&lt;/dt&gt;
-&lt;dd&gt;Godzilla&lt;/dd&gt;
-&lt;dt&gt;Born&lt;/dt&gt;
-&lt;dd&gt;1952&lt;/dd&gt;
-&lt;dt&gt;Birthplace&lt;/dt&gt;
-&lt;dd&gt;Japan&lt;/dd&gt;
-&lt;dt&gt;Color&lt;/dt&gt;
-&lt;dd&gt;Green&lt;/dd&gt;
-&lt;/dl&gt;
 
 ---
-class: center, middle
 
-# Thanks!
+## Many thanks
 
-Slides created via the R packages:
+* Jens, Dean, Dan, Sally and [BC COVID Modelling group](https://bccovid-19group.ca)
 
-[**xaringan**](https://github.com/yihui/xaringan)&lt;br&gt;
-[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+* Jacob, Ryan, Rob, Larry, Addison, Alden and the rest of [Delphi](https://delphi.cmu.edu/)
 
-The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+* Shuyi Tan and Wei Tang
+
+* Funding from NSERC, CANSSI
+
+* I get to benefit from the results of funding from Google, Facebook, Amazon, Change Healthcare, Quidel, SafeGraph, Qualtrics (you can too!)
+
+* Forecast evaluation from [Reich Lab](http://covid19forecasthub.org) and [Delphi](https://delphi.cmu.edu/forecast-eval/)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="macros.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
 "slideNumberFormat": "%current%",
 "highlightStyle": "github",

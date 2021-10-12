@@ -202,31 +202,40 @@ layout: true
 
 (Borrowed heavily from [Cosma Shalizi](http://www.stat.cmu.edu/~cshalizi/dst/20/lectures/20/lecture-20.html), Ryan Tibshirani, [Dean Karlen](https://pypm.github.io/home/docs/studies/reports/Characterizing_spread.pdf))
 
-Population of size N
+
 
 .pull-left[
-Suppose every member in a bucket at time t:
+Suppose each of N people in a bucket at time t:
 
-1. .primary[Susceptible] `\(S(t)\)` : not sick, but could get sick
-1. .secondary[Infected] `\(I(t)\)` : sick, can make others sick
-1. .tertiary[Removed] `\(R(t)\)` : either recovered or dead; not sick, can't get sick, can't make anyone sick
-
-
-Bucket Jumping (small increment h):
-
-1. During h, each .primary[s] meets kh people.
-1. Prob( .primary[s] meets .secondary[i] and becomes .secondary[i] ) = c.
-1. So Prob( .primary[s] becomes .secondary[i] ) = `\(1 - (1 - c I(t)  / N )^{hk} \approx kchI(t) / N\)`
-1. New .secondary[i] in time h `\(\sim Binom(S(t),\ kchI(t) / N)\)`
-1. Prob( .secondary[i] becomes .tertiary[r]) = `\(\gamma h\)`, so new removals in time h `\(\sim Binom(I(t),\ \gamma h)\)`
-
-
+1. .large[.primary[Susceptible(t)]] : not sick, but could get sick
+1. .large[.secondary[Infected(t)]] : sick, can make others sick
+1. .large[.tertiary[Removed(t)]] : either recovered or dead; not sick, can't get sick, can't make anyone sick
 ]
 
 .pull-right[
-<div id="htmlwidget-d1400771c8f9959de585" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d1400771c8f9959de585">{"x":{"url":"index_files/figure-html//widgets/widget_sir-dag.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+<div id="htmlwidget-4e06e4f80c8de896e434" style="width:100%;height:144px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4e06e4f80c8de896e434">{"x":{"url":"index_files/figure-html//widgets/widget_sir-dag.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
 ]
+
+&lt;hr&gt;
+
+
+**Assume**: During period h, each .primary[S] meets kh people.
+
+**Assume**: Prob( .primary[S] meets .secondary[I] and becomes .secondary[I] ) = c.
+
+.fourth-color[So]: Prob( .primary[S] `\(\rightarrow\)` .secondary[I] ) = `\(1 - (1 - c I(t)  / N )^{hk} \approx kchI(t) / N\)`
+
+.fourth-color[So]: New .secondary[I] in time h `\(\sim Binom(S(t),\ kchI(t) / N)\)`
+
+**Assume**: Prob( .secondary[I] `\(\rightarrow\)` .tertiary[R]) = `\(\gamma h\)` 
+
+.fourth-color[So]: new removals in time h `\(\sim Binom(I(t),\ \gamma h)\)`
+
+
+
 
 
 ---
@@ -267,19 +276,21 @@ layout: false
 
 ## Data issues 
 
-- **Ideally** we'd see `\(S(t), I(t), R(t)\)` (or any 2) at all times
+- **Ideally** we'd see .large[.primary[S], .secondary[I], .tertiary[R]] at all times
 
-- Easier to observe new infections, `\(I(t+h) - I(t)\)`, than current total infections, `\(I(t)\)`
+- Easier to observe new infections, .large[.secondary[I(t+h) - I(t)]]
 
-- Removals by death are easier to observe than removals by recovery, so we mostly see `\((R(t+h)-R(t))\times (\mathrm{death\ rate})\)`
+- Removals by death are easier to observe than removals by recovery,  
+  so we mostly see .large[.tertiary[(R(t+h)-R(t))] &amp;times; (death rate)]
 
 - The interval between measurements, say `\(\Delta\)`, is often `\(\gg h\)`
 
-- Measuring `\(I(t)\)` and `\(R(t)\)` (or their rates of change) is hard since testing/reporting is sporadic and error prone
+- Measuring .large[.secondary[I(t)]] and .large[.tertiary[R(t)]] (or their rates of change) is hard 
+    + testing/reporting is sporadic and error prone
     + Need to model test error (false positives, false negatives) _and_ who gets tested
     + Need to model lag between testing and reporting
     
-- Parameters (especially, but not just `\(\beta\)`) change during the epidemic
+- Parameters (especially, `\(\beta\)`) change during the epidemic
     + Changing behavior, changing policy, environmental factors, vaccines, variants, ...
 
 ---
@@ -289,9 +300,11 @@ layout: true
 
 ---
 
-- Likelihood calculations are straightforward if we can measure `\(I(t), R(t)\)` at all times `\(0, h, 2h \ldots T\)`
-    + Or `\(I(0), R(0)\)` and all the increments `\(I(t+h)-I(t), R(t+h) - R(t)\)`
-	+ Still have to optimize numerically
+- Likelihood calculations are straightforward if we can measure .large[.secondary[I(t)], .tertiary[R(t)]] at all times 0, h, 2h, &amp;hellip; T
+
+- Or .large[.secondary[I(0)]], .large[.tertiary[R(0)]] and all the increments .large[.secondary[I(t+h)-I(t)], .tertiary[R(t+h) - R(t)]]
+
+- Still have to optimize numerically
 
 - Likelihood calculations already become difficult if the time between observations `\(\Delta \gg h\)`
     + Generally, `\(\Delta \approx\)` 1 day
@@ -299,6 +312,9 @@ layout: true
 
 - Other complications if we don't observe all the compartments, and/or have a lot of noise in our observations
     + We don't and we do.
+
+
+
 
 ---
 
@@ -348,9 +364,9 @@ Two main models
 
 .pull-right[
 
-![](bc_2_9_0928.jpg)
+![](bc-20211004.png)
 
-.small[.center[Source: [Dean Karlen](https://github.com/pypm/home/blob/master/docs/studies/bc20210928/img/bc_2_9_0928.pdf) September 28 model fit to all BC]]
+.small[.center[Source: [Dean Karlen](https://pypm.github.io/home/docs/studies/bc20211004/) 4 October model fit to all BC]]
 ]
 
 ---
@@ -400,9 +416,11 @@ class: inverse, middle, center
 
 * Every week, submit forecasts to [COVID-19 **Forecast**Hub](https://covid19forecasthub.org)
 
-* We have now submitted 52 such forecasts (first on July 20, 2020)!
+* The first forecasts were submitted on 20 July 20 2020
 
-* Originally "State Deaths", added "County Cases" a bit later, and eventually "Hospitalizations"
+* Originally "State Deaths"
+
+* Added "County Cases" a bit later, and eventually "Hospitalizations"
 
 * Hub also collects (now) a few other targets
 
@@ -412,7 +430,7 @@ class: inverse, middle, center
 
 * Forecasts from many teams are combined into an "ensemble"
 
-* The ensemble generally has the best performance, and is the official CDC Forecast
+* The ensemble generally has the best performance, and is the official [CDC Forecast](https://covid.cdc.gov/covid-data-tracker/#forecasting)
 
 ---
 
@@ -421,7 +439,9 @@ class: inverse, middle, center
 .pull-left[
 * SIR, Agent-based models, ML models
 
-* Ours are (simple) ML
+* Dean submits his
+
+* Delphi submitted simple ML until July
 
 * Some do pretty well, but many are ...
 ]
@@ -623,6 +643,7 @@ class: middle, inverse, center
 
 ## Delphi data
 
+![](covidcast_indicators.svg)
 
 ---
 
@@ -639,6 +660,19 @@ class: middle, inverse, center
 * I get to benefit from the results of funding from Google, Facebook, Amazon, Change Healthcare, Quidel, SafeGraph, Qualtrics (you can too!)
 
 * Forecast evaluation from [Reich Lab](http://covid19forecasthub.org) and [Delphi](https://delphi.cmu.edu/forecast-eval/)
+
+---
+class: middle, center, inverse
+
+## Extras
+
+
+---
+
+
+
+&lt;img src="index_files/figure-html/sim-sir-plot-1.svg" width="100%" /&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

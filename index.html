@@ -43,6 +43,39 @@ class: middle
 
 ---
 
+## Outline
+
+&lt;hr&gt;
+&lt;br/&gt;
+
+.right-column[
+
+### 1. Background on Epi Groups
+
+&lt;br/&gt;
+
+
+### 2. Intro to standard epidemic models
+
+&lt;br/&gt;
+
+
+
+### 3. Out-of-sample COVID forecasting
+
+&lt;br/&gt;
+
+### 4. Gaps in forecasting
+
+&lt;br/&gt;
+
+
+### 5. Some concluding thoughts
+
+]
+
+---
+
 ## BC COVID Modelling Group
 
 .left-column[
@@ -70,19 +103,19 @@ Others
 
 ### Goals
 
-Mainly volunteers interested and motivated by understanding COVID-19.
+* Volunteers interested and motivated by understanding COVID-19.
 
-Began more as a research group with invited speakers.
+* Began as a research group with invited speakers, paper discussion.
 
-Still focused on "understanding" local issues, providing a perspective on the situation that might help policy. 
+* Focused on **understanding** local issues, providing a perspective on the situation that might help policy. 
 
-A focus on counterfactual mathematical modeling.
+* A focus on factual/counterfactual mathematical modeling. 
 
-Strong connection to local/national journalists (esp. Sally and Caroline).
+* Strong connection to local/national journalists (esp. Sally and Caroline).
 
-Began releasing reports every other week.
+* Began releasing reports every other week in April.
 
-**Big emphasis on data issues/availability**
+**Big emphasis on data issues/availability. Current conditions. News or PH  statements.**
 ]
 
 ---
@@ -93,9 +126,11 @@ Began releasing reports every other week.
 
 * [Delphi](https://delphi.cmu.edu/) Formed in 2012, to "develop theory and practice of epi forecasting".
 
-* Participated in annual CDC influenza forecasting challenges since 2013, and earned top place in several. 
+* National US orientation.
 
-* Awarded **CDC National Center of Excellence** for flu forecasting in 2019.
+* Participated in annual CDC influenza forecasting challenges since 2013, and won several. 
+
+* Awarded CDC National Center of Excellence for flu forecasting in 2019.
 
 * Pivoted in February 2020 to focus on supporting the US COVID-19 response, launched [COVIDcast project](https://delphi.cmu.edu/covidcast/).
 
@@ -114,6 +149,7 @@ Began releasing reports every other week.
 
 
 ---
+layout: true
 
 ## Delphi personnel
 
@@ -129,14 +165,25 @@ CMU MLD
 CMU MLD + Stat
 ]
 
---
+---
+
+
+---
 
 .center[
 ![:scale 50%](delphi-core.jpeg)
 ]
 
+---
+
+.center[
+&lt;img src="more-delphi.png" width="30%" /&gt;&lt;img src="even-more-delphi.png" width="30%" /&gt;
+]
+
+
 
 ---
+layout: false
 
 ## To understand COVID-19, we need data
 
@@ -261,7 +308,7 @@ N &amp;= S(0) + I(0) + R(0)\\
 \frac{dR}{dt} &amp; =  \gamma I(t)
 \end{aligned}`
 
-**"_the_ SIR model"** often ambiguous between the stochastic model and these ODEs
+**"_the_ SIR model"** is often ambiguous between these
 
 ]
 
@@ -281,7 +328,7 @@ layout: false
 - Easier to observe new infections, .large[.secondary[I(t+h) - I(t)]]
 
 - Removals by death are easier to observe than removals by recovery,  
-  so we mostly see .large[.tertiary[(R(t+h)-R(t))] &amp;times; (death rate)]
+  so we mostly see .large[.tertiary[(R(t+h) - R(t))] &amp;times; (death rate)]
 
 - The interval between measurements, say `\(\Delta\)`, is often `\(\gg h\)`
 
@@ -302,7 +349,7 @@ layout: true
 
 - Likelihood calculations are straightforward if we can measure .large[.secondary[I(t)], .tertiary[R(t)]] at all times 0, h, 2h, &amp;hellip; T
 
-- Or .large[.secondary[I(0)]], .large[.tertiary[R(0)]] and all the increments .large[.secondary[I(t+h)-I(t)], .tertiary[R(t+h) - R(t)]]
+- Or .large[.secondary[I(0)]], .large[.tertiary[R(0)]] and all the increments .large[.secondary[I(t+h) - I(t)], .tertiary[R(t+h) - R(t)]]
 
 - Still have to optimize numerically
 
@@ -336,7 +383,7 @@ layout: true
 
 
 ---
-layout: false
+layout: true
 
 ## BC COVID Compartmental Models
 
@@ -362,6 +409,8 @@ Two main models
 - Other Bells and Whistles I'm not doing justice
 ]]
 
+---
+
 .pull-right[
 
 ![](bc-20211004.png)
@@ -370,6 +419,15 @@ Two main models
 ]
 
 ---
+
+.pull-right[
+
+![:scale 80%](https://pypm.github.io/home/docs/pypmca/img/ref_model_2.png)
+
+]
+
+---
+layout: false
 
 ## These models fit well "in sample"
 
@@ -414,6 +472,8 @@ class: inverse, middle, center
 ---
 ## The task
 
+
+.pull-left-wide[
 * Every week, submit forecasts to [COVID-19 **Forecast**Hub](https://covid19forecasthub.org)
 
 * The first forecasts were submitted on 20 July 20 2020
@@ -423,6 +483,12 @@ class: inverse, middle, center
 * Added "County Cases" a bit later, and eventually "Hospitalizations"
 
 * Hub also collects (now) a few other targets
+]
+
+.pull-right-narrow[
+![](https://covid19forecasthub.org/images/forecast-hub-logo_DARKBLUE.png)
+]
+
 
 --
 
@@ -432,9 +498,11 @@ class: inverse, middle, center
 
 * The ensemble generally has the best performance, and is the official [CDC Forecast](https://covid.cdc.gov/covid-data-tracker/#forecasting)
 
+* Some members of ForecastHub and Delphi collaborate on [Ensemble creation](https://forecasters.org/blog/2020/10/28/comparing-ensemble-approaches-for-short-term-probabilistic-covid-19-forecasts-in-the-u-s/)
+
 ---
 
-## The forecasters
+## The Forecasters
 
 .pull-left[
 * SIR, Agent-based models, ML models
@@ -443,7 +511,6 @@ class: inverse, middle, center
 
 * Delphi submitted simple ML until July
 
-* Some do pretty well, but many are ...
 ]
 
 .pull-right[
@@ -538,6 +605,11 @@ class: inverse, middle, center
 &lt;img src="index_files/figure-html/overall-cases-1.svg" width="100%" /&gt;
 
 ---
+class: middle, center, inverse
+
+# Gaps in forecasting
+
+---
 
 ## Predicting surges in Florida
 
@@ -577,7 +649,7 @@ layout: true
 
 ---
 
-Simple models [M,Bien,Green,Hu,...Tibs](http://medrxiv.org/content/10.1101/2021.06.22.21259346v1)
+Simple models [M, Bien, Green, Hu, ..., Tibshirani](http://medrxiv.org/content/10.1101/2021.06.22.21259346v1)
 
 
 
@@ -607,13 +679,13 @@ class: middle, inverse, center
 
 .pull-left[
 
-* Data is trouble
+* **Data is trouble**
     1. Both groups spend lots of time dealing with this
     2. Nowcasting
     3. Low SNR
     4. Very nonstationary
     
-* Forecast evaluation is not settled
+* **Forecast evaluation is not settled**
     1. WIS is equivalent to quantile loss, should use that.
     2. Not optimized to predict turning points. 
     3. How do we create ensembles?
@@ -622,20 +694,20 @@ class: middle, inverse, center
 
 .pull-right[
 
-* Hugely important to backtest properly
+* **Hugely important to backtest properly**
     1. Data is constantly revised
     2. We see up to 10% "improvement" if we use finalized data
     3. Bigger deal in the US
 
-* Understanding the spatio-temporal dynamics is open
+* **Understanding the spatio-temporal dynamics is open**
     1. How do "waves" propagate?
     2. How important is mixing?
     3. Effects of schooling?
     4. Seasonality?
     
-* True Counterfactual causal inference is open
+* **True Counterfactual causal inference is open**
 
-* Massive survey dataset
+* **Massive survey dataset**
 
 ]
 
@@ -651,9 +723,9 @@ class: middle, inverse, center
 
 * Jens, Dean, Dan, Sally and [BC COVID Modelling group](https://bccovid-19group.ca)
 
-* Jacob, Ryan, Rob, Larry, Addison, Alden and the rest of [Delphi](https://delphi.cmu.edu/)
+* Jacob, Ryan, Rob, Larry, Valerie, Addison, Alden, Ken, Mike, Jed and the rest of [Delphi](https://delphi.cmu.edu/)
 
-* Shuyi Tan and Wei Tang
+* Shuyi, Wei (UBC Stat), Bryn (UBC Stat / BCCOVID)
 
 * Funding from NSERC, CANSSI
 
@@ -661,10 +733,22 @@ class: middle, inverse, center
 
 * Forecast evaluation from [Reich Lab](http://covid19forecasthub.org) and [Delphi](https://delphi.cmu.edu/forecast-eval/)
 
+&lt;hr&gt;
+
+--
+
+
+.center[
+
+**Questions**
+
+On these or other issues.
+]
+
 ---
 class: middle, center, inverse
 
-## Extras
+# Extras
 
 
 ---
